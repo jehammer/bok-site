@@ -1,0 +1,48 @@
+.navigation-shell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 0.75rem;
+}
+
+.myMenu.p-menubar {
+  margin: 0.75rem 0;
+  width: min(100%, 72rem);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 0.75rem;
+  background: rgb(24 24 27 / 94%);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 20%);
+}
+
+.myMenu .p-menubar-root-list {
+  gap: 0.25rem;
+}
+
+.myMenu .p-menubar-item-link,
+.myMenu .p-menuitem-link {
+  border-radius: 0.5rem;
+}
+
+.myMenu .p-menubar-item-link:hover,
+.myMenu .p-menuitem-link:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+.vm-titlebar,
+.vm-content {
+  background-color: #403b4f;
+}
+
+.modal-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.modal-wrapper .vm {
+  top: auto;
+}
+
+.modalForm {
+  text-align: center;
+  text-justify: center;
+}

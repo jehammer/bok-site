@@ -1,7 +1,9 @@
 import { createApp } from 'vue';
-import './style.css';
+import './css/global.css';
+import './css/date-picker.css';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
+import Aura from '@primeuix/themes/aura';
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core';
 /* import font awesome icon component */
@@ -15,7 +17,6 @@ import Notifications from '@kyvg/vue3-notification';
 import router from './router/index.js';
 
 import '@kouts/vue-modal/dist/vue-modal.css';
-import 'primevue/resources/themes/viva-dark/theme.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import 'animate.css';
@@ -27,8 +28,15 @@ library.add(faRotateRight);
 const app = createApp(App);
 app.use(modalPlugin);
 app.component('Modal', Modal);
-app.component('font-awesome-icon', FontAwesomeIcon)
-app.use(PrimeVue);
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+    options: {
+      darkModeSelector: '.p-dark',
+    },
+  },
+});
 app.use(Notifications);
 app.use(router);
 app.mount('#app');

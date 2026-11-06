@@ -2,10 +2,13 @@
   <div>
     <Navigation />
   </div>
-  <div class='container'><img src='/BOKBanner.png' class="image-container"/></div>
+  <main class="home-content">
+    <img src="/BOKBanner.png" class="image-container" alt="Breath of Kynareth" />
+  </main>
 </template>
   
   <script lang="ts">
+  import '../css/homepage.css';
   import Navigation from '../components/Navigation.vue';
   export default {
     components: { Navigation },
@@ -16,16 +19,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .container {
-    display: flex;
-    justify-content: center;
-    padding-top: 3em;
-  }
-  .image-container {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-</style>

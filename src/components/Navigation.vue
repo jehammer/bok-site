@@ -1,5 +1,5 @@
 <template>
-    <div class="card relative z-2">
+    <div class="navigation-shell">
         <Menubar :model="items" class="myMenu">
           <template #item="{ label, item, props, root, hasSubmenu }">
               <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
@@ -36,6 +36,7 @@
 </template>
 
 <script lang="ts">
+import '../css/navigation.css';
 import { ref, onMounted } from "vue";
 // @ts-ignore
 import { Modal, useModal } from '@kouts/vue-modal';
@@ -121,45 +122,6 @@ export default {
   },
 };
 </script>
-
-<style>
-
-.myMenu li.wijmo-wijmenu-parent > a {
-	text-align: right;
-}
-
-.myMenu ul:first-child > li.wijmo-wijmenu-parent > a > span,
-.myMenu ul:first-child > li.wijmo-wijmenu-parent > a > span > span {
-	float: left !important;
-}
-
-.myMenu li.wijmo-wijmenu-parent > a > span,
-.myMenu li.wijmo-wijmenu-parent > a > span > span {
-	float: none !important;
-	display: inline-block;
-	vertical-align: bottom;
-}
-
-.vm-titlebar{
-  background-color: #403b4f;
-}
-.vm-content{
-  background-color: #403b4f;
-}
-.modal-wrapper {
-  display: flex;
-  align-items: center;
-}
-.modal-wrapper .vm {
-  top: auto;
-}
-
-.modalForm{
-  text-align: center;
-  text-justify: center;
-}
-</style>
-
 
 <!--
 Multi-option menu save.

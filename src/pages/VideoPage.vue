@@ -8,6 +8,7 @@
   </template>
     
     <script lang="ts">
+    import '../css/video-page.css';
     import Navigation from '../components/Navigation.vue';
     export default {
       components: { Navigation },
@@ -18,12 +19,3 @@
       }
     }
   </script>
-  
-  <style scoped>
-    .video-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 90vh;     
-    }
-  </style>

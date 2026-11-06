@@ -1,0 +1,65 @@
+.timestamp-page {
+  padding: 20px;
+  width: min(100%, 56rem);
+  margin-inline: auto;
+}
+
+.timestamp-page .timestamp-field {
+  background-color: #9eade6 !important;
+  color: #121212 !important;
+  text-align: left;
+}
+
+.timestamp-page .timestamp-code-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timestamp-page .timestamp-value {
+  text-align: left;
+}
+
+.timestamp-page .timestamp-copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 3.5rem;
+  width: 3.5rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
+  background-color: #141516 !important;
+  border-radius: 0.6rem;
+  color: #2f8a02;
+  box-shadow: none;
+}
+
+.timestamp-page .timestamp-copy-button:hover,
+.timestamp-page .timestamp-copy-button:focus-visible {
+  background-color: #141516 !important;
+  color: #2f8a02;
+}
+
+.timestamp-page .timestamp-copy-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .timestamp-page .selector-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .timestamp-page .timezone-picker,
+  .timestamp-page .date-picker {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .timestamp-page {
+    height: auto;
+  }
+}

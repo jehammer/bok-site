@@ -1,0 +1,10 @@
+.home-content {
+  width: min(calc(100% - 2rem), 90rem);
+  margin: 3rem auto 0;
+}
+
+.image-container {
+  display: block;
+  width: 100%;
+  height: auto;
+}

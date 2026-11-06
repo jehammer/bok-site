@@ -1,0 +1,27 @@
+.rosters-page .container {
+  padding: 20px;
+  width: 33.33%;
+}
+
+@media (min-width: 768px) {
+  .rosters-page .container {
+    margin: auto;
+  }
+
+  .rosters-page .selector-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .rosters-page .timezone-picker,
+  .rosters-page .date-picker {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .rosters-page .container {
+    width: 100%;
+    height: auto;
+  }
+}

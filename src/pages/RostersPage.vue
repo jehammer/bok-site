@@ -1,10 +1,11 @@
 <template>
+  <main class="rosters-page">
     <Navigation />
 
     <div class="grid nested-grid grid-nogutter container">
       <label for="roster-select">Select Roster</label>
       <div class="col-12 sm:col-12">
-        <Dropdown filter name="roster-select" id="roster-select" v-model="rosterSelector" 
+        <Select filter name="roster-select" id="roster-select" v-model="rosterSelector"
           :options=rosters placeholder="Select Roster" @change="loadRoster"/>
           <button @click="reloadOptions()" class="copy-button">
                   <font-awesome-icon :icon="['fas','rotate-right']" size="lg" style="color: #2f8a02" /> Reload Options
@@ -12,14 +13,14 @@
       </div>
       <label for="leader">Select Time</label>
       <div class="col-12 sm:col-12 selector-container">
-        <Dropdown filter name="timezone-select" id="timezone-select" v-model="timezone" 
+        <Select filter name="timezone-select" id="timezone-select" v-model="timezone"
           :options=timezones placeholder="Select a Timezone" class="timezone-picker" />
         <VueDatePicker class ="dp__theme_dark date-picker " :dark="true" v-model="date" :is-24="false" week-start="0" 
           :timezone="timezone" :text-input="textInputOptions" @update:model-value="generateTimestamp" />
       </div>
       <label for="rank-select">Set Limit</label>
       <div class="col-12 sm:col-12">
-        <Dropdown filter name="rank-select" id="rank-select" v-model="rankSelector" 
+        <Select filter name="rank-select" id="rank-select" v-model="rankSelector"
           :options=ranks placeholder="Select Rank Limit"/>
       </div>
     </div>
@@ -54,14 +55,16 @@
         </div>
         <button @click="createNewRoster()" class="copy-button">Submit</button>
     </div>
+  </main>
   </template>
   
   <script lang="ts">
+  import '../css/rosters.css';
   import VueDatePicker from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css';
   import { ref, onMounted } from 'vue';
   import { timeZonesNames} from "@vvo/tzdb";
-  import Dropdown from 'primevue/dropdown';
+  import Select from 'primevue/select';
   import Navigation from '../components/Navigation.vue';
   // @ts-ignore
   import { DateTime } from "luxon";
@@ -71,7 +74,7 @@
 import { RosterError } from '../errors/errors';
 
   export default {
-    components: { VueDatePicker, Dropdown, Navigation },
+    components: { VueDatePicker, Select, Navigation },
     setup() {
       const date = ref(new Date());
       const timezone = ref();
@@ -289,65 +292,3 @@ import { RosterError } from '../errors/errors';
     }
   }
   </script>
-  
-  <style scoped>
-    .container {
-      padding: 20px;
-      width: 33.33%;
-    }
-  
-    /* Desktop layout (1/3 of the screen horizontally) */
-    @media (min-width: 768px) {
-      .container {
-        margin-left: auto;
-        margin-right: auto;
-        margin: auto;
-      }
-      .selector-container{
-        align-items: center;
-        display: flex;
-      }
-      .timezone-picker{
-        width: 50%;
-      }
-      .date-picker{
-        width: 50%;
-      }
-    }
-  
-    /* Mobile layout (full width horizontally) */
-    @media (max-width: 767px) {
-      .container {
-        width: 100%;
-        height: auto;
-      }
-    }
-  .dp__theme_dark {
-      --dp-background-color: #212121;
-      --dp-text-color: #fff;
-      --dp-hover-color: #484848;
-      --dp-hover-text-color: #fff;
-      --dp-hover-icon-color: #959595;
-      --dp-primary-color: #005cb2;
-      --dp-primary-disabled-color: #61a8ea;
-      --dp-primary-text-color: #fff;
-      --dp-secondary-color: #a9a9a9;
-      --dp-border-color: #2d2d2d;
-      --dp-menu-border-color: #2d2d2d;
-      --dp-border-color-hover: #aaaeb7;
-      --dp-disabled-color: #737373;
-      --dp-disabled-color-text: #d0d0d0;
-      --dp-scroll-bar-background: #212121;
-      --dp-scroll-bar-color: #484848;
-      --dp-success-color: #00701a;
-      --dp-success-color-disabled: #428f59;
-      --dp-icon-color: #959595;
-      --dp-danger-color: #e53935;
-      --dp-marker-color: #e53935;
-      --dp-tooltip-color: #3e3e3e;
-      --dp-highlight-color: rgb(0 92 178 / 20%);
-      --dp-range-between-dates-background-color: var(--dp-hover-color, #484848);
-      --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
-      --dp-range-between-border-color: var(--dp-hover-color, #fff);
-  }
-  </style>

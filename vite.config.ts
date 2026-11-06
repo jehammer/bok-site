@@ -1,8 +1,34 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   base: '/',
-})
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 4173,
+  },
+  build: {
+    sourcemap: true,
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('primevue') || id.includes('@vuepic')) {
+              return 'vendor-ui';
+            }
+            if (id.includes('vue')) {
+              return 'vendor-vue';
+            }
+            return 'vendor';
+          }
+        },
+      },
+    },
+  },
+});

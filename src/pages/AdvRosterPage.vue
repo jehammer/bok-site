@@ -1,4 +1,5 @@
 <template>
+  <main class="advanced-rosters-page">
   <Navigation />
   <div class="col-12 actions-row"> 
     <button @click="showJsonModal = true" class="copy-button">Load Data</button>
@@ -6,7 +7,7 @@
   <div class="grid nested-grid grid-nogutter container">
     <label for="leader">Select Time</label>
     <div class="col-12 sm:col-12 selector-container">
-      <Dropdown filter name="timezone-select" id="timezone-select" v-model="timezone"
+      <Select filter name="timezone-select" id="timezone-select" v-model="timezone"
         :options="timezones" placeholder="Select a Timezone" class="timezone-picker" />
 
       <VueDatePicker
@@ -111,14 +112,16 @@
   </div>
 </transition>
 
+  </main>
 </template>
 
 <script lang="ts">
+import '../css/advanced-rosters.css';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { ref, onMounted } from 'vue';
 import { timeZonesNames } from "@vvo/tzdb";
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 import Navigation from '../components/Navigation.vue';
 import { notify } from "@kyvg/vue3-notification";
 
@@ -130,7 +133,7 @@ type Slot = {
 };
 
 export default {
-  components: { VueDatePicker, Dropdown, Navigation },
+  components: { VueDatePicker, Select, Navigation },
   setup() {
     const date = ref(new Date());
     const timezone = ref<string | undefined>();
@@ -270,239 +273,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.container {
-  padding: 20px;
-  width: 33.33%;
-}
-
-@media (min-width: 768px) {
-  .container {
-    margin-left: auto;
-    margin-right: auto;
-    margin: auto;
-  }
-  .selector-container {
-    align-items: center;
-    display: flex;
-  }
-  .timezone-picker {
-    width: 50%;
-  }
-  .date-picker {
-    width: 50%;
-  }
-}
-
-@media (max-width: 767px) {
-  .container {
-    width: 100%;
-    height: auto;
-  }
-}
-
-.info-text {
-  margin: 8px 0;
-  color: var(--text-color, #cfcfcf);
-  font-size: 0.95rem;
-}
-
-.slots-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
-}
-
-.slots-table th,
-.slots-table td {
-  border-bottom: 1px solid var(--surface-border, #2d2d2d);
-  padding: 8px 6px;
-  vertical-align: top;
-}
-
-.slots-table thead th {
-  text-align: left;
-  font-weight: 600;
-}
-
-.center {
-  text-align: center;
-}
-
-.role-cell {
-  font-weight: 600;
-  color: var(--primary, #005cb2);
-}
-
-.slots-table input,
-.slots-table textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 6px;
-  background: var(--surface-overlay, #1f1f1f);
-  color: var(--text-color, #fff);
-  border: 1px solid var(--surface-border, #2d2d2d);
-  border-radius: 6px;
-}
-
-.delete-btn {
-  background: #a33;
-  border: none;
-  color: white;
-  padding: 6px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.add-btn,
-.regen-btn {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #444;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: white;
-}
-
-.copy-button {
-  margin-right: 10px;
-  padding: 8px 12px;
-  background: #005cb2;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
-
-.actions-row {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.dp__theme_dark {
-  --dp-background-color: #212121;
-  --dp-text-color: #fff;
-  --dp-hover-color: #484848;
-  --dp-hover-text-color: #fff;
-  --dp-hover-icon-color: #959595;
-  --dp-primary-color: #005cb2;
-  --dp-primary-disabled-color: #61a8ea;
-  --dp-primary-text-color: #fff;
-  --dp-secondary-color: #a9a9a9;
-  --dp-border-color: #2d2d2d;
-  --dp-menu-border-color: #2d2d2d;
-  --dp-border-color-hover: #aaaeb7;
-  --dp-disabled-color: #737373;
-  --dp-disabled-color-text: #d0d0d0;
-  --dp-scroll-bar-background: #212121;
-  --dp-scroll-bar-color: #484848;
-  --dp-success-color: #00701a;
-  --dp-success-color-disabled: #428f59;
-  --dp-icon-color: #959595;
-  --dp-danger-color: #e53935;
-  --dp-marker-color: #e53935;
-  --dp-tooltip-color: #3e3e3e;
-  --dp-highlight-color: rgb(0 92 178 / 20%);
-  --dp-range-between-dates-background-color: var(--dp-hover-color, #484848);
-  --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
-  --dp-range-between-border-color: var(--dp-hover-color, #fff);
-}
-
-.container {
-  background: rgba(32, 32, 32, 0.85);
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 900px;
-}
-
-.formgrid.grid.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.field.col {
-  flex: 1 1 200px;
-  min-width: 180px;
-}
-
-.slots-table {
-  margin-top: 12px;
-}
-
-.actions-row {
-  justify-content: center;
-}
-
-.selector-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.timezone-picker,
-.date-picker {
-  flex: 1;
-  min-width: 140px;
-}
-
-.role-select {
-  width: 100%;
-  padding: 4px 6px;
-  border-radius: 6px;
-  background: var(--surface-overlay, #1f1f1f);
-  color: #005cb2;
-  font-weight: 600;
-  border: 1px solid var(--surface-border, #2d2d2d);
-  text-align: center;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.modal-fade-enter-from,
-.modal-fade-leave-to {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.modal-fade-enter-to,
-.modal-fade-leave-from {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: rgba(32, 32, 32, 0.95);
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-}
-
-</style>

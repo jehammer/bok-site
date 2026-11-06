@@ -1,16 +1,15 @@
 {
-  "name": "my-vue-app",
+  "name": "bok-site",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=dev vite",
-    "build": "NODE_ENV=production vue-tsc && vite build",
-    "preview": "NODE_ENV=production vite preview",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "check": "vue-tsc --noEmit",
     "predeploy": "npm run build",
-    "predeploy-linux": "npm run build",
-    "deploy": "NODE_ENV=production copy dist\\index.html dist\\404.html && copy CNAME dist\\CNAME && gh-pages -d dist",
-    "deploy-linux": "cp dist/index.html dist/404.html && cp CNAME dist/CNAME && gh-pages -d dist"
+    "deploy": "cp dist/index.html dist/404.html && cp CNAME dist/CNAME && gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -20,6 +19,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@kouts/vue-modal": "^5.0.0",
     "@kyvg/vue3-notification": "^3.0.2",
+    "@primeuix/themes": "^3.1.0",
     "@vuepic/vue-datepicker": "^7.2.0",
     "@vvo/tzdb": "^6.110.0",
     "animate.css": "^4.1.1",
@@ -27,17 +27,17 @@
     "luxon": "^3.4.3",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
-    "primevue": "^3.39.0",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "primevue": "^4.5.5",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.2",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-vue": "^6.0.10",
     "dotenv": "^16.3.1",
     "gh-pages": "^6.0.0",
-    "typescript": "^5.0.2",
-    "vite": "^7.3.1",
-    "vue-tsc": "^3.2.5"
+    "typescript": "^5.7.2",
+    "vite": "^8.3.6",
+    "vue-tsc": "^3.3.14"
   }
 }
