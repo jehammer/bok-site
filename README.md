@@ -1,6 +1,6 @@
 # BOK Site
 
-A Vue 3 + Vite single-page app for the Breath of Kynareth community tools. This site serves the roster, timestamp, and video utilities and is designed to be hosted via GitHub Pages.
+A Vue 3 + Vite single-page app for the Breath of Kynareth community website. Functionalities of the website include advanced roster making, and timestamp making currently with more planned.
 
 ## Local development
 
