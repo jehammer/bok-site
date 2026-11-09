@@ -14,7 +14,13 @@
             <div class="xl:col-5 col-12">
               <div class="p-1 border-round-sm timestamp-field timestamp-code-field font-bold">
                 <button @click="copyToClipboard(row.id)" class="timestamp-copy-button" aria-label="Copy timestamp">
-                  <font-awesome-icon :icon="['fas','clipboard']" size="lg" />
+                  <font-awesome-icon
+                    :key="`${row.id}-${copyAnimationKeys[row.id] ?? 0}`"
+                    :icon="['fas','clipboard']"
+                    size="lg"
+                    class="clipboard-icon"
+                    :class="{ 'is-spinning': spinningCopyId === row.id }"
+                  />
                 </button>
                 <span class="timestamp-value">{{ row.id }}</span>
               </div>
@@ -45,6 +51,8 @@ export default {
   setup() {
     const date = ref(new Date());
     const timezone = ref();
+    const copyAnimationKeys = ref<Record<string, number>>({});
+    const spinningCopyId = ref<string>();
     const timezones = timeZonesNames;
     const generatedTimestamp = ref<number>(Math.floor(Date.now() / 1000));
     const currentTime = ref(Date.now());
@@ -89,6 +97,8 @@ export default {
     };
 
     const copyToClipboard = (value: string) => {
+      spinningCopyId.value = value;
+      copyAnimationKeys.value[value] = (copyAnimationKeys.value[value] ?? 0) + 1;
       navigator.clipboard.writeText(value);
     };
 
@@ -144,6 +154,8 @@ export default {
       date,
       timezones,
       timezone,
+      copyAnimationKeys,
+      spinningCopyId,
       generatedTimestamp,
       textInputOptions,
       generateTimestamp,

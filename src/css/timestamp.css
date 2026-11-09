@@ -46,6 +46,22 @@
   outline-offset: 2px;
 }
 
+@keyframes clipboard-spin {
+  to {
+    transform: perspective(500px) rotateY(360deg);
+  }
+}
+
+.timestamp-page .clipboard-icon.is-spinning {
+  animation: clipboard-spin 500ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timestamp-page .clipboard-icon.is-spinning {
+    animation: none;
+  }
+}
+
 @media (min-width: 768px) {
   .timestamp-page .selector-container {
     display: flex;
